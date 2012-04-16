@@ -6,3 +6,5 @@ target
 target-eclipse
 plugin.xml
 grails-jstest-qunit*.zip
+.idea
+*.iml
