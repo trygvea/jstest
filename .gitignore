@@ -4,3 +4,5 @@ target
 .project
 .settings
 target-eclipse
+plugin.xml
+grails-jstest-qunit*.zip
