@@ -915,12 +915,6 @@ function validTest( name ) {
 // so far supports only Firefox, Chrome and Opera (buggy)
 // could be extended in the future to use something like https://github.com/csnover/TraceKit
 function extractStacktrace( e, offset ) {
-	Loader.println("stacktrace ");
-	for (property in e) {
-		Loader.println('\n'+property + ': ' + e[property]+';')
-	}
-	
-	
 	offset = offset || 3;
 	if (e.stacktrace) {
 		// Opera
