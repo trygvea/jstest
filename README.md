@@ -12,14 +12,11 @@ The plugin is in a very early stage.
  ### Example test/unit/js/basicTest.js
  ```javascript
 Loader.load('test/unit/js/qunit-boilerplate.js');
-
 module("My Test module");
-
 test("successful test", function() {
 	  ok(true, "Life's good" );
 	  equal(100, 100, "One hundred is one hundred or I'll be damned");
 });
- 
 ```
 
 ## Other
