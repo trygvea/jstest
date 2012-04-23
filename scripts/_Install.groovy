@@ -8,16 +8,3 @@
 //
 //    ant.mkdir(dir:"${basedir}/grails-app/jobs")
 //
-
-def qunitVersion = '1.5.0pre'
-def files = ["qunit-${qunitVersion}.js", "qunit-boilerplate.js", "simpleTest.js"]
-def toDir = "test/unit/js"
-event("StatusUpdate", ["Copying QUnit files to $toDir"])
-
-ant.mkdir(dir:"${basedir}/$toDir")
-files.each {
-	ant.copy(file: "${pluginBasedir}/src/qunit/${it}",
-			todir: "${basedir}/$toDir")
-}
-
-event("StatusFinal", ["Copying of QUnit files to $toDir finished"])
