@@ -11,8 +11,8 @@ The plugin is in a very early stage.
  
  ### Example test/unit/js/basicTest.js
  ```javascript
-Loader.load('test/unit/js/qunit-boilerplate.js') //qunit-boilerplate.js should be auto installed to you
-		
+Loader.load('test/unit/js/qunit-boilerplate.js');
+
 module("My Test module");
 
 test("successful test", function() {
