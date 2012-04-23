@@ -10,7 +10,8 @@ import org.mozilla.javascript.tools.shell.Global
 class JavascriptTestrunner {
 	Context cx
 	Scriptable scope
-	Boolean printOutput = false
+	
+	String output = ""
 	
 	JavascriptTestrunner() {
 		Global global = new Global();
@@ -26,14 +27,30 @@ class JavascriptTestrunner {
 	}
 	
 	Boolean runTest(String javascriptfile) {
+		output = ""
 		try {
 			Object result = cx.evaluateReader(scope, new FileReader(javascriptfile), javascriptfile, 1, null);
-			if (printOutput) println cx.toString(result)
+			output = cx.toString(result)
+			if (output != "undefined") println output //not sure what it's from, but it's uneccesary I think.
 			return true
+		}catch(EvaluatorException evalEx) { // compiler error
+			output += "Javascript evaluator exception:\n"
+			output += evalEx.message + "\n"
+			println output
+			return false
 		}catch (all) {
-			println all.getMessage()
-			println "Stack trace:"
-			println all.getScriptStackTrace()
+			String[] stack = all.getScriptStackTrace().split("at")
+			String relevantLine = stack[stack.size()-1].trim()
+			output += all.message?.replace("\n (test/unit/js/qunit-boilerplate.js#10)","") + "\n"
+			output += "at: " + relevantLine
+			println output
+			//println all.getScriptStackTrace()
+			return false
+		} catch (all) {
+			String[] stack = all.getScriptStackTrace().split("at")
+			String relevantLine = stack[stack.size()-1].trim()
+			println "fail at: " + relevantLine
+			//println "Stack trace:" + all.getScriptStackTrace()
 			return false
 		}
 	}
