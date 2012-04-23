@@ -22,12 +22,13 @@ test("successful test", function() {
 });
 ```
 
-### I don't wanna use qunit.
-You need to make your test framework throw a exception in javascript when a test fails. This was easy to do in QUnit, so we chose it.
+### I don't wanna use qunit
+That's fine, but you need to make your test framework throw an exception in javascript when you intend a test to fail.
 
-Have a loook at qunit-boilerplate if you wanna see why qunit works.
+Have a loook at qunit-boilerplate if you wanna see why qunit works. QUnit allows us to attach callbacks when tests have run, you need simular stuff in your framework.
 
 ### Other
 Check out the jstest-sampleapp for some example tests.
-
+ This was easy to do in QUnit, so we chose it.
+ 
 The plugin uses the rhino javascript engine.
