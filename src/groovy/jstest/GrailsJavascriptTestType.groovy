@@ -46,17 +46,18 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 	@Override
 	protected GrailsTestTypeResult doRun(GrailsTestEventPublisher eventPublisher) {
 		int failCount = 0
-		
-		for (File currentFile in files) { 
-			//eventPublisher.testCaseStart(currentFile.path)
-			//eventPublisher.testStart(currentFile.path)
+		for (File currentFile in files) {
+			def testCaseName = currentFile.parent
+			def testName = currentFile.name
+			eventPublisher.testCaseStart(testCaseName)
+			eventPublisher.testStart(testName)
 			if (new JavascriptTestrunner().runTest(currentFile.path)) {
-				//eventPublisher.testEnd(currentFile.path)
+				eventPublisher.testEnd(testName)
 			} else {
-				//eventPublisher.testFailure(currentFile.path)
+				eventPublisher.testFailure(testName, new RuntimeException("$testName failed"))
 				failCount ++
 			}
-			//eventPublisher.testCaseEnd(currentFile.path)
+			eventPublisher.testCaseEnd(testCaseName)
 		}
 		
 		return new GrailsJavascriptTestTypeResult(runCount:files.size(), failCount:failCount);
