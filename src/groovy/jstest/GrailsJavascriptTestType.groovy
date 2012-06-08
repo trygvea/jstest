@@ -26,9 +26,8 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 
 	protected suite
 	protected mode
-
 	
-		static final SUFFIXES = ["Test", "Tests"].asImmutable()
+	static final SUFFIXES = ["Test", "Tests"].asImmutable()
 	
 	protected List<String> getTestSuffixes() { SUFFIXES }
 	protected List<String> getTestExtensions() {
@@ -57,8 +56,7 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 
 	@Override
 	protected GrailsTestTypeResult doRun(GrailsTestEventPublisher eventPublisher) {
-		println "DORUN!"
-		println eventPublisher
+		
 		GrailsTestRunNotifier notifier = createNotifier(eventPublisher)
 		def result = new Result()
 		notifier.addListener(result.createListener())
@@ -66,22 +64,22 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 //		suite.run(notifier)
 //
 //		notifier.fireTestRunFinished(result)
-		new JUnit4ResultGrailsTestTypeResultAdapter(result)
+//		new JUnit4ResultGrailsTestTypeResultAdapter(result)
 		
-		SuiteRunListener listner = createListener()
 		JUnitReportsFactory reportsFactory = createJUnitReportsFactory()
+		SuiteRunListener listner = createListener()
 		int failCount = 0
-		for (File currentFile in files) { 
+		for (File currentFile in files) {
 			notifier.fireTestStarted(new Description(currentFile.name))
-			println "running ${currentFile.path}"
 			if (!new JavascriptTestrunner().runTest(currentFile.path)) {
 				failCount ++
 				notifier.fireTestFailure(new Description(currentFile.name))
 			}
 			notifier.fireTestFinished(new Description(currentFile.name)) 
-			
 			reportsFactory.createReports(currentFile.name)
+			
 		}
+		notifier.fireTestRunFinished(result)
 		
 		return new GrailsJavascriptTestTypeResult(runCount:files.size(), failCount:failCount);
 	}
@@ -113,12 +111,7 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 	}
 
 	protected createNotifier(eventPublisher) {
-		int total = 0
-		if(suite.hasProperty("children")) {
-			total = suite.children.collect {
-				it.hasProperty("children") ? it.children.size() : 0
-			}.sum()
-		}
+		int total = files.size()
 		def notifier = new GrailsTestRunNotifier(total)
 		notifier.addListener(createListener(eventPublisher))
 		notifier
