@@ -26,7 +26,10 @@ class JavascriptTestrunner {
 		cx.setOptimizationLevel(-1);
 	}
 	
+	Exception lastException
+	
 	Boolean runTest(String javascriptfile) {
+		lastException = null
 		output = ""
 		try {
 			Object result = cx.evaluateReader(scope, new FileReader(javascriptfile), javascriptfile, 1, null);
@@ -37,12 +40,14 @@ class JavascriptTestrunner {
 			output += "Javascript evaluator exception:\n"
 			output += evalEx.message + "\n"
 			println output
+			lastException = evalEx
 			return false
 		}catch (all) {
 			String[] stack = all.getScriptStackTrace().split("at")
 			String relevantLine = stack[stack.size()-1].trim()
 			output += all.message?.replace("\n (test/unit/js/qunit-boilerplate.js#10)","") + "\n"
 			output += "at: " + relevantLine
+			lastException = all
 			println output
 			//println all.getScriptStackTrace()
 			return false

@@ -3,7 +3,7 @@ package jstest
 //import grails.plugin.spock.test.listener.OverallRunListener
 
 
-import org.junit.runner.Description
+import org.junit.runner.*
 import org.junit.runner.JUnitCore
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -71,9 +71,10 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 		int failCount = 0
 		for (File currentFile in files) {
 			notifier.fireTestStarted(new Description(currentFile.name))
-			if (!new JavascriptTestrunner().runTest(currentFile.path)) {
+			JavascriptTestrunner runner = new JavascriptTestrunner()
+			if (!runner.runTest(currentFile.path)) {
 				failCount ++
-				notifier.fireTestFailure(new Description(currentFile.name))
+				notifier.fireTestFailure(new Failure(new Description(currentFile.name), runner.lastException))
 			}
 			notifier.fireTestFinished(new Description(currentFile.name)) 
 			reportsFactory.createReports(currentFile.name)
