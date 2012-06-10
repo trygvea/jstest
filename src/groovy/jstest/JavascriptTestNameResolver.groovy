@@ -12,7 +12,7 @@ class JavascriptTestNameResolver {
 		String relativePath = file.path.split('test/unit/')[1]
 		String relativePathWithoutExtension = relativePath.split('.js$')[0]
 		String testClassName = relativePathWithoutExtension.replaceAll('/', '.')
-		"allTests(jstest.${testClassName})"
+		"allTests(${testClassName})"
 	}
 
 }
