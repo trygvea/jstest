@@ -41,7 +41,7 @@ Have a look at the [DOM test](https://github.com/finnjohnsen/jstest-sampleapp/bl
 
 Note that envjs slows the tests down sigificantly.
 
-# This doesn't work well with <MY IDE>
+# This doesn't work well with my IDE
 We've tested intelliJ and Springsource Tool Suite at the time of writing. But honestly, the way grails and the IDE's interract via JUnit is black magic.
 
 ### Other
