@@ -34,7 +34,7 @@ class JavascriptTestrunner {
 		try {
 			Object result = cx.evaluateReader(scope, new FileReader(javascriptfile), javascriptfile, 1, null);
 			output = cx.toString(result)
-			if (output != "undefined") println output //not sure what the "undefined" is from, but it's uneccesary I think.
+			if (output != "undefined") println output //not sure what the "undefined" is from, but it's unnecessary I think.
 			return true
 		}catch(EvaluatorException evalEx) { // aka compiler error
 			output += "JavaScript evaluator exception:\n"
