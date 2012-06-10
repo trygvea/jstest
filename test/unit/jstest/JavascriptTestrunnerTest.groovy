@@ -16,8 +16,9 @@ class JavascriptTestrunnerTest {
 	void "should assert false as the javascript tests are failing"() {
 		def runner = new JavascriptTestrunner()
 		assert runner.runTest("test/unit/js/failingTest_.js") == false
-		assert runner.output.contains("Test failed")
-		assert runner.output.contains("at: test/unit/js/failingTest_.js:5")
+		assert runner.output.contains("test fail")
+		assert runner.output.contains("test/unit/js/failingTest_.js:5")
+		println runner.output
 	}
 		
 	@Test

@@ -34,28 +34,20 @@ class JavascriptTestrunner {
 		try {
 			Object result = cx.evaluateReader(scope, new FileReader(javascriptfile), javascriptfile, 1, null);
 			output = cx.toString(result)
-			if (output != "undefined") println output //not sure what it's from, but it's uneccesary I think.
+			if (output != "undefined") println output //not sure what the "undefined" is from, but it's uneccesary I think.
 			return true
-		}catch(EvaluatorException evalEx) { // compiler error
+		}catch(EvaluatorException evalEx) { // aka compiler error
 			output += "Javascript evaluator exception:\n"
 			output += evalEx.message + "\n"
 			println output
 			lastException = evalEx
 			return false
 		}catch (all) {
-			String[] stack = all.getScriptStackTrace().split("at")
-			String relevantLine = stack[stack.size()-1].trim()
-			output += all.message?.replace("\n (test/unit/js/qunit-boilerplate.js#10)","") + "\n"
-			output += "at: " + relevantLine
+			output += "Javascript test fail at:\n"
+			String[] stack = all.getScriptStackTrace().split('at')
+			output += stack[stack.length-1] //this is the relevant line in the test.
 			lastException = all
 			println output
-			//println all.getScriptStackTrace()
-			return false
-		} catch (all) {
-			String[] stack = all.getScriptStackTrace().split("at")
-			String relevantLine = stack[stack.size()-1].trim()
-			println "fail at: " + relevantLine
-			//println "Stack trace:" + all.getScriptStackTrace()
 			return false
 		}
 	}
