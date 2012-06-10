@@ -70,21 +70,22 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 		SuiteRunListener listner = createListener()
 		int failCount = 0
 		for (File currentFile in files) {
-			notifier.fireTestStarted(new Description(currentFile.name))
+			String currentFileWithoutExtension = currentFile.name - ".js"
+			String testName = "${currentFileWithoutExtension}(jstest.${currentFileWithoutExtension})"
+			notifier.fireTestStarted(new Description(testName))
 			JavascriptTestrunner runner = new JavascriptTestrunner()
 			if (!runner.runTest(currentFile.path)) {
 				failCount ++
-				notifier.fireTestFailure(new Failure(new Description(currentFile.name), runner.lastException))
+				notifier.fireTestFailure(new Failure(new Description(testName), runner.lastException))
 			}
-			notifier.fireTestFinished(new Description(currentFile.name)) 
-			reportsFactory.createReports(currentFile.name)
-			
+			notifier.fireTestFinished(new Description(testName))
+			reportsFactory.createReports(testName)
 		}
 		notifier.fireTestRunFinished(result)
-		
+
 		return new GrailsJavascriptTestTypeResult(runCount:files.size(), failCount:failCount);
 	}
-	
+
 	
 	
 	
