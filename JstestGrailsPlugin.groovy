@@ -10,7 +10,7 @@ class JstestGrailsPlugin {
     def author = "Finn Johnsen"
     def authorEmail = "finn.johnsen@gmail.com"
     def description = '''\
-	This plugin runs javascript tests in the test phase. 
+	This plugin runs JavaScript tests in the test phase.
 
     Check out the readme in the source at github for the documentation:
 	http://github.com/finnjohnsen/jstest 

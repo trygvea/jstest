@@ -1,12 +1,12 @@
 #jstest
 
-A grails plugin which runs javascript tests placed in your test/unit/js.
+A grails plugin which runs JavaScript tests placed in your test/unit/js.
 
-The plugin is bundled with QUnit, but you're free to use whatever javascript testing framework you want. (look at the FAQ for more info).
+The plugin is bundled with QUnit, but you're free to use whatever JavaScript testing framework you want. (look at the FAQ for more info).
 
 ## Usage
  - install the plugin
- - install a sample javascript test, 'grails install-qunit'
+ - install a sample JavaScript test, 'grails install-qunit'
  - run 'grails test-app'
  - run a single test with 'grails test-app :javascript simpleTest'
  
@@ -23,16 +23,16 @@ test("successful test", function() {
 
 ### FAQ
 
-## The test doesn't find my javascript tests.
+## The test doesn't find my JavaScript tests.
 The files must end with *Test.js or *Tests.js and live in test/unit/js of your project.
 
-## I want to run a test method instead of a whole javascript test file
+## I want to run a test method instead of a whole JavaScript test file
 Sorry, not possible.
 
-The reason is that this would force this plugin to understand the content of the javascript -file, and parse QUnit -specifics and pass it to jUnit. We're not going there. Not yet at least.
+The reason is that this would force this plugin to understand the content of the JavaScript file, and parse QUnit -specifics and pass it to jUnit. We're not going there. Not yet at least.
 
 # I don't wanna use QUnit. What do I do?
-You need to make your test framework throw an exception in javascript when you intend a test to fail.
+You need to make your test framework throw an exception in JavaScript when you intend a test to fail.
 
 Have a look at qunit-boilerplate.js If you wanna see why QUnit works quite well. QUnit allows us to attach callbacks when tests have run, you need similar stuff in your framework.
 
@@ -45,7 +45,7 @@ Note that envjs slows the tests down significantly.
 We've tested intelliJ IDEA and Springsource Tool Suite at the time of writing. But honestly, the way grails and the IDE's interact via JUnit is black magic.
 
 ### Other
-The plugin uses the Rhino javascript engine.
+The plugin uses the Rhino JavaScript engine.
 
 ### Contributors and thanks
 - Ronny Løvtangen

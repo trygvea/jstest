@@ -37,13 +37,13 @@ class JavascriptTestrunner {
 			if (output != "undefined") println output //not sure what the "undefined" is from, but it's uneccesary I think.
 			return true
 		}catch(EvaluatorException evalEx) { // aka compiler error
-			output += "Javascript evaluator exception:\n"
+			output += "JavaScript evaluator exception:\n"
 			output += evalEx.message + "\n"
 			println output
 			lastException = evalEx
 			return false
 		}catch (all) {
-			output += "Javascript test fail at:\n"
+			output += "JavaScript test fail at:\n"
 			String[] stack = all.getScriptStackTrace().split('at')
 			output += stack[stack.length-1] //this is the relevant line in the test.
 			lastException = all
