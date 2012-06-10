@@ -48,10 +48,10 @@ We've tested intelliJ and Springsource Tool Suite at the time of writing. But ho
 The plugin uses the Rhino javascript engine.
 
 ### Contributors and thanks
-Ronny Løvtangen
-Fredrik Aubert
-Peter Ledbrook @ Gr8conf 2012
+- Ronny Løvtangen
+- Fredrik Aubert
+- Peter Ledbrook @ Gr8conf 2012
 
 ### Links
-http://docs.jquery.com/Qunit
-http://www.mozilla.org/rhino/
+- http://docs.jquery.com/Qunit
+- http://www.mozilla.org/rhino/
