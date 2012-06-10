@@ -4,18 +4,17 @@ package jstest
 
 
 import org.junit.runner.*
-import org.junit.runner.JUnitCore
+
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import org.junit.runners.Suite
-import org.codehaus.groovy.grails.test.GrailsTestTargetPattern;
+
 import org.codehaus.groovy.grails.test.GrailsTestTypeResult
 import org.codehaus.groovy.grails.test.event.GrailsTestEventPublisher
 import org.codehaus.groovy.grails.test.event.GrailsTestRunNotifier
-import org.codehaus.groovy.grails.test.junit4.JUnit4GrailsTestType
 
 import org.codehaus.groovy.grails.test.junit4.listener.SuiteRunListener
-import org.codehaus.groovy.grails.test.junit4.result.JUnit4ResultGrailsTestTypeResultAdapter;
+
 import org.codehaus.groovy.grails.test.junit4.runner.GrailsTestCaseRunnerBuilder;
 import org.codehaus.groovy.grails.test.support.GrailsTestTypeSupport
 import org.codehaus.groovy.grails.test.report.junit.JUnitReportsFactory
@@ -70,8 +69,7 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 		SuiteRunListener listner = createListener()
 		int failCount = 0
 		for (File currentFile in files) {
-			String currentFileWithoutExtension = currentFile.name - ".js"
-			String testName = "${currentFileWithoutExtension}(jstest.${currentFileWithoutExtension})"
+			String testName = JavascriptTestNameResolver.resolveTestNameForFile(currentFile)
 			def description = new Description(testName)
 			notifier.fireTestStarted(description)
 			JavascriptTestrunner runner = new JavascriptTestrunner()
@@ -86,11 +84,6 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 
 		return new GrailsJavascriptTestTypeResult(runCount:files.size(), failCount:failCount);
 	}
-
-	
-	
-	
-	
 	
 	protected createRunnerBuilder() {
 //		if (mode) {
