@@ -66,7 +66,6 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 //		new JUnit4ResultGrailsTestTypeResultAdapter(result)
 		
 		JUnitReportsFactory reportsFactory = createJUnitReportsFactory()
-		SuiteRunListener listner = createListener()
 		int failCount = 0
 		for (File currentFile in files) {
 			String testName = JavascriptTestNameResolver.resolveTestNameForFile(currentFile)
