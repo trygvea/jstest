@@ -1,4 +1,4 @@
-Loader.load('test/unit/js/qunit-1.5.0pre.js');
+Loader.load('test/unit/js/lib/qunit-1.5.0pre.js');
 
 QUnit.init();
 QUnit.config.blocking = false;
