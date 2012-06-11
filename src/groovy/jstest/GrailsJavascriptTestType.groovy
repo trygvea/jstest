@@ -20,7 +20,7 @@ import org.codehaus.groovy.grails.test.support.GrailsTestTypeSupport
 import org.codehaus.groovy.grails.test.report.junit.JUnitReportsFactory
 
 // grails test-app unit: simple*
-class GrailsJavascriptTestType extends GrailsTestTypeSupport {
+class GrailsJavaScriptTestType extends GrailsTestTypeSupport {
 
 
 	protected suite
@@ -32,8 +32,8 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 	protected List<String> getTestExtensions() {
 		["js"]
 	}
-	
-	GrailsJavascriptTestType(String name, String relativeSourcePath) {
+
+	GrailsJavaScriptTestType(String name, String relativeSourcePath) {
 		super(name, relativeSourcePath + "/js")
 	  }
 	
@@ -68,10 +68,10 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 		JUnitReportsFactory reportsFactory = createJUnitReportsFactory()
 		int failCount = 0
 		for (File currentFile in files) {
-			String testName = JavascriptTestNameResolver.resolveTestNameForFile(currentFile)
+			String testName = JavaScriptTestNameResolver.resolveTestNameForFile(currentFile)
 			def description = new Description(testName)
 			notifier.fireTestStarted(description)
-			JavascriptTestrunner runner = new JavascriptTestrunner()
+			JavaScriptTestRunner runner = new JavaScriptTestRunner()
 			if (!runner.runTest(currentFile.path)) {
 				failCount ++
 				notifier.fireTestFailure(new Failure(description, runner.lastException))
@@ -81,7 +81,7 @@ class GrailsJavascriptTestType extends GrailsTestTypeSupport {
 		}
 		notifier.fireTestRunFinished(result)
 
-		return new GrailsJavascriptTestTypeResult(runCount:files.size(), failCount:failCount);
+		return new GrailsJavaScriptTestTypeResult(runCount:files.size(), failCount:failCount);
 	}
 	
 	protected createRunnerBuilder() {

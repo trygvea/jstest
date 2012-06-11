@@ -1,6 +1,6 @@
 package jstest
 
-class JavascriptTestNameResolver {
+class JavaScriptTestNameResolver {
 
 	/**
 	 * Calculates the test name for a given JavaScript test file.
@@ -14,7 +14,6 @@ class JavascriptTestNameResolver {
 		if (pathWithoutExtension.contains("/")) { //unix, linux, mac
 			String relativePathWithoutExtension = pathWithoutExtension.split('test/unit/')[1]
 			testClassName = relativePathWithoutExtension.replaceAll('/', '.')
-
 		} else { //windows
 			String relativePathWithoutExtension = pathWithoutExtension.split("test\\\\unit\\\\")[1]
 			testClassName = relativePathWithoutExtension.replaceAll('\\\\', '.')

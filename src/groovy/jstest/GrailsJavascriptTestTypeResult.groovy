@@ -1,7 +1,7 @@
 package jstest
 import org.codehaus.groovy.grails.test.GrailsTestTypeResult
 
-class GrailsJavascriptTestTypeResult implements GrailsTestTypeResult {
+class GrailsJavaScriptTestTypeResult implements GrailsTestTypeResult {
 	int runCount = 0
 	int failCount = 0
 

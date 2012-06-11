@@ -1,6 +1,6 @@
 Loader.load('test/unit/js/qunit-boilerplate.js')
 		
-module("JavaScriptTestrunner tests");
+module("JavaScriptTestRunner tests");
 
 test("successful test", function() {
 	  ok(true, "Life's good" );

@@ -1,5 +1,4 @@
 package jstest
-import grails.test.mixin.*
 
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ContextFactory
@@ -7,13 +6,13 @@ import org.mozilla.javascript.EvaluatorException;
 import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.tools.shell.Global
 
-class JavascriptTestrunner {
+class JavaScriptTestRunner {
 	Context cx
 	Scriptable scope
 	
 	String output = ""
-	
-	JavascriptTestrunner() {
+
+	JavaScriptTestRunner() {
 		Global global = new Global();
 		cx = ContextFactory.getGlobal().enterContext();
 		global.init(cx);
@@ -28,11 +27,11 @@ class JavascriptTestrunner {
 	
 	Exception lastException
 	
-	Boolean runTest(String javascriptfile) {
+	Boolean runTest(String javaScriptFile) {
 		lastException = null
 		output = ""
 		try {
-			Object result = cx.evaluateReader(scope, new FileReader(javascriptfile), javascriptfile, 1, null);
+			Object result = cx.evaluateReader(scope, new FileReader(javaScriptFile), javaScriptFile, 1, null);
 			output = cx.toString(result)
 			if (output != "undefined") println output //not sure what the "undefined" is from, but it's unnecessary I think.
 			return true
