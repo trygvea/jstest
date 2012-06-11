@@ -9,9 +9,16 @@ class JavascriptTestNameResolver {
 	 * @return test name
 	 */
 	static String resolveTestNameForFile(File file) {
-		String relativePath = file.path.split('test/unit/')[1]
-		String relativePathWithoutExtension = relativePath.split('.js$')[0]
-		String testClassName = relativePathWithoutExtension.replaceAll('/', '.')
+		String pathWithoutExtension = file.path.split('.js$')[0]
+		String testClassName
+		if (pathWithoutExtension.contains("/")) { //unix, linux, mac
+			String relativePathWithoutExtension = pathWithoutExtension.split('test/unit/')[1]
+			testClassName = relativePathWithoutExtension.replaceAll('/', '.')
+
+		} else { //windows
+			String relativePathWithoutExtension = pathWithoutExtension.split("test\\\\unit\\\\")[1]
+			testClassName = relativePathWithoutExtension.replaceAll('\\\\', '.')
+		}
 		"allTests(${testClassName})"
 	}
 
