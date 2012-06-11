@@ -1,4 +1,4 @@
-Loader.load('test/unit/js/qunit-boilerplate.js')
+Loader.load('test/unit/js/qunit-boilerplate.js');
 		
 module("This is my failing module");
 
