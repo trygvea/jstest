@@ -1,5 +1,4 @@
-package jstest
-
+package grails.plugin.jstest
 import org.junit.*
 
 class JavaScriptTestRunnerTest {

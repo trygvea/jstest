@@ -1,4 +1,4 @@
-package jstest
+package grails.plugin.jstest
 
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ContextFactory

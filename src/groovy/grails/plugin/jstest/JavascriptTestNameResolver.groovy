@@ -1,4 +1,4 @@
-package jstest
+package grails.plugin.jstest
 
 class JavaScriptTestNameResolver {
 

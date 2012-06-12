@@ -1,5 +1,5 @@
 loadJavaScriptTestTypeClass = { ->
-	def doLoad = { -> classLoader.loadClass('jstest.GrailsJavaScriptTestType') }
+	def doLoad = { -> classLoader.loadClass('grails.plugin.jstest.GrailsJavaScriptTestType') }
 	try {
 	  doLoad()
 	} catch (ClassNotFoundException e) {
@@ -10,7 +10,6 @@ loadJavaScriptTestTypeClass = { ->
 }
 
 loadJavaScriptTestTypes = {
-//  if (!binding.variables.containsKey("unitTests")) return
   def javaScriptTestTypeClass = loadJavaScriptTestTypeClass()
   [unit: unitTests].each { name, types ->
     if (!types.any { it.class == javaScriptTestTypeClass }) {
